@@ -1,0 +1,85 @@
+A functional interface only one abstract method and can include any quantity of default and static methods.
+Runnable, ActionListener, and Comparable are some of the examples of functional interfaces.
+
+
+Lambda expressions can be used to represent the instance of a functional interface.
+Functional Interface is additionally recognized as Single Abstract Method Interfaces.
+
+Before Java 8: We can create an anonymous inner class to instantiate an interface with a single abstract method.
+
+class Test {
+    public static void main(String args[])
+    {
+        // create anonymous inner class object
+        new Thread(new Runnable() {
+            @Override public void run()
+            {
+                System.out.println("New thread created");
+            }
+        }).start();
+    }
+}
+
+Java 8 onwards, we can assign lambda expression to its functional interface object like this
+
+class Test {
+    public static void main(String args[])
+    {
+        // lambda expression to create the object
+        new Thread(() -> {
+            System.out.println("New thread created");
+        }).start();
+    }
+}
+
+@FunctionalInterface annotation is used to ensure that the functional interface can’t have more than one abstract method
+
+Java SE 8 included four main kinds of functional interfaces :
+Consumer
+Predicate
+Function
+Supplier
+
+1/ Consumer
+-accepts only one argument or a gentrified argument
+-has no return value.
+-exists functional variants of the Consumer — DoubleConsumer, IntConsumer, and LongConsumer. These variants accept primitive values as arguments.
+
+1.2/ BiConsumer
+the Bi-Consumer interface takes two arguments. It is used in iterating through the entries of the map.
+
+2. Predicate
+-accepts an argument
+-generates a boolean value as an answer.
+-exists functional variants of the Predicate: IntPredicate, DoublePredicate, and LongPredicate. These variants accept only primitive data types or values as arguments.
+
+2.1/ BiPredicate
+takes two arguments, does some processing, and returns the boolean value.
+
+3. Function
+-receives only a single argument and returns a value after the required processing.
+-There are many versions of Function interfaces because a primitive type can’t imply a general type argument, so we need these versions of function interfaces.
+
+These versions are:
+
+3.1/Bi-Function
+The Bi-Function is substantially related to a Function. Besides, it takes two arguments, whereas Function accepts one argument.
+3.2/Unary Operator
+The Unary Operator is a special type of Function that takes a single argument and returns a value of the same type.
+It extends the Function interface.
+
+3.3/Binary Operator
+The Binary Operator is a special type of Bi-Function that takes two arguments and returns a value of the same type.
+It extends the Bi-Function interface.
+
+4. Supplier
+-It doesn’t accept any argument.
+-It produces a result.
+-It is used to generate or supply values without any input.
+-generally used in the lazy generation of values.
+-defining the logic for the generation of any sequence of numbers.
+For example – The logic behind the Fibonacci Series can be generated with the help of the Stream. generate method, which is implemented by the Supplier functional Interface.
+
+
+exists functional variants suppliers like BooleanSupplier, DoubleSupplier, LongSupplier, and IntSupplier.
+The return type of all these further specializations is their corresponding primitives only.
