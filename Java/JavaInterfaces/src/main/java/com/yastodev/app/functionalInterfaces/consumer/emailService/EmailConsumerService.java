@@ -1,5 +1,7 @@
 package com.yastodev.app.functionalInterfaces.consumer.emailService;
 
+import com.yastodev.app.functionalInterfaces.utils.User;
+
 public class EmailConsumerService {
 
     public static void main(String[] args) {

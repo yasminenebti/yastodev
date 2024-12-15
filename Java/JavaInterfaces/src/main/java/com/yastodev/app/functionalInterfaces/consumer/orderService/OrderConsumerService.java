@@ -1,5 +1,7 @@
 package com.yastodev.app.functionalInterfaces.consumer.orderService;
 
+import com.yastodev.app.functionalInterfaces.utils.Order;
+
 import java.util.List;
 import java.util.function.Consumer;
 

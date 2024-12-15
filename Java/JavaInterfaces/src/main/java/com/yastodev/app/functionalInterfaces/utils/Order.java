@@ -1,4 +1,4 @@
-package com.yastodev.app.functionalInterfaces.consumer.orderService;
+package com.yastodev.app.functionalInterfaces.utils;
 
 public class Order {
     private int orderId;

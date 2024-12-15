@@ -1,4 +1,4 @@
-package com.yastodev.app.functionalInterfaces.consumer.emailService;
+package com.yastodev.app.functionalInterfaces.utils;
 
 public class User {
     private String name;
