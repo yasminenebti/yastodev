@@ -1,0 +1,37 @@
+multithreading  is a mechanism of dividing the CPU time between multiple threads.
+A thread is a lightweight sub-process, the smallest unit of processing.
+
+Multitasking is being achieved in two ways :
+Multiprocessing : Process-based multitasking
+- heavyweight process and occupies different address spaces in memory.
+
+Multithreading : Thread-based multitasking
+- lightweight process and occupies the same address space.
+
+Threads are Independent
+Threads are individual sequences of execution.
+Each thread can execute its tasks independently of other threads.
+They can run concurrently (parallel execution if the CPU has multiple cores or through time slicing on a single core).
+Threads can have their own stack, which contains local variables, method call details, and other temporary data unique to the thread.
+Threads share the process's heap memory and static variables.
+
+2. Sharing the Same Address Space
+Address space refers to the memory allocated to a program by the operating system.
+When a program runs, it is given a specific area of memory that contains:
+Code: The instructions of the program.
+Heap: Memory for objects and dynamically allocated variables.
+Static/Global Memory: Memory for static variables and global variables.
+Stack: Separate stacks for each thread to store temporary/thread-local data.
+
+Sharing the same address space allows threads to:
+
+++
+Communicate efficiently: Threads can directly access shared objects in the heap without the overhead of inter-process communication.
+Work collaboratively: Threads can update shared state or data structures for tasks like computations, file processing, etc.
+
+--
+Sharing the same address space also introduces risks:
+
+Data Races: If two threads try to modify the same shared variable at the same time, it can lead to inconsistent or incorrect results.
+Deadlocks: If threads are waiting on each other to release resources, the program can freeze.
+Synchronization Overhead: To prevent data races, synchronization techniques (like locks or thread-safe classes) are needed, which can slow down performance.

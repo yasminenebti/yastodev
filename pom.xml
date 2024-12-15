@@ -12,6 +12,7 @@
   <url>https://github.com/yasminenebti/yastodev</url>
     <modules>
       <module>Java</module>
+        <module>Java/JavaMultithreading</module>
     </modules>
 
     <properties>
