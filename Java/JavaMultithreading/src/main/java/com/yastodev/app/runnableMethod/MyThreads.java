@@ -1,4 +1,4 @@
-package com.yastodev.app.RunnableMethod;
+package com.yastodev.app.runnableMethod;
 
 public class MyThreads {
     public static void main(String[] args) {

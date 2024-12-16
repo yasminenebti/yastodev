@@ -35,3 +35,61 @@ Sharing the same address space also introduces risks:
 Data Races: If two threads try to modify the same shared variable at the same time, it can lead to inconsistent or incorrect results.
 Deadlocks: If threads are waiting on each other to release resources, the program can freeze.
 Synchronization Overhead: To prevent data races, synchronization techniques (like locks or thread-safe classes) are needed, which can slow down performance.
+
+
+Daemon thread is a service provider thread that provides services to the user thread.
+The scope for this thread start() or be it terminate() is completely dependent on the user’s thread (it )supports in the backend for user threads being getting run).
+As soon as the user thread is terminated daemon thread is also terminated at the same time.
+
+Hence, the characteristics of the Daemon thread are as follows:
+
+It is only the service provider thread not responsible for interpretation in user threads.
+exp: garbage collector in java.
+
+
+Synchronization
+bounds the access of multiple threads to share a common resource
+useful where only one thread at a time is granted the access to run over.
+
+
+Object Level Lock in Java
+Class Level Lock in Java
+
+synchronization, concurrent collections, and the executor framework help manage multiple threads safely
+
+Key Benefits of synchronized :
+Atomicity:  preventing race conditions.
+Thread Safety: The shared variable is safely accessed and modified by multiple threads.
+Data Consistency: The final value of count matches the expected result
+
+key drawback of synchronized :
+erformance Trade-Off: Synchronization can slow down the program due to thread contention (threads waiting for the lock). However, it is necessary to maintain correctness.
+Alternative Approach: You could use AtomicInteger instead of synchronization for better performance:
+
+Why AtomicInteger is Faster:
+Lock-Free Mechanism:
+
+Why AtomicInteger is Faster:
+Lock-Free Mechanism:
+
+AtomicInteger uses CAS (Compare-And-Swap), which avoids blocking threads.
+Threads work independently until contention arises, making it more efficient.
+Synchronized Overhead:
+
+Synchronization involves acquiring and releasing a lock, which is slower because of context switching and potential thread contention.
+Things to Note:
+Performance may vary based on:
+
+Number of threads.
+System architecture (CPU cores, scheduling).
+JVM optimizations.
+Use Case Selection:
+
+Use AtomicInteger when only atomic operations like incrementing are needed.
+Use synchronized when you need more complex critical sections or logic.
+
+Keyword	Purpose	Use Case Example
+synchronized	Ensures mutual exclusion, allowing only one thread to execute critical code at a time.	Bank account deposit
+volatile	Ensures visibility of changes across threads.	Stop a running thread
+AtomicVariable	Provides atomic operations without explicit synchronization for better performance.	Counting website hits
+final	Ensures immutability or prevents reassignment for thread safety and better design.	Immutable configuration
