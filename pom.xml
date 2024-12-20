@@ -13,6 +13,7 @@
     <modules>
       <module>Java</module>
         <module>Java/JavaMultithreading</module>
+      <module>Keycloak</module>
     </modules>
 
     <properties>
