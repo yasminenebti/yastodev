@@ -9,6 +9,8 @@ import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +19,10 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class UserServiceImpl implements UserService {
+    //to do add logger class
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+
     private final Keycloak keycloak;
     @Value("${app.keycloak.realm}")
     private String realm;
@@ -30,13 +34,13 @@ public class UserServiceImpl implements UserService {
         UsersResource usersResource = getUsersResource();
         Response response = usersResource.create(userRepresentation);
 
-        log.info("Status code{}", response.getStatus());
+        LOGGER.info("Status code{}", response.getStatus());
 
         if(!Objects.equals(201,response.getStatus())) {
             throw new RuntimeException("Status code" + response.getStatus());
         }
 
-        log.info("User created");
+        LOGGER.info("User created");
 
         List<UserRepresentation> userRepresentations = usersResource.searchByUsername(user.getUsername(), true);
         UserRepresentation userRepresentation1 = userRepresentations.getFirst();

@@ -8,14 +8,14 @@
     </parent>
 
     <artifactId>Keycloak</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>Keycloak</name>
     <url>http://maven.apache.org</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <modules>
+        <module>keycloak-extension</module>
+        <module>keycloak-auth-server</module>
+    </modules>
 
     <dependencies>
         <dependency>

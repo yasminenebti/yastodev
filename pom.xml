@@ -17,8 +17,12 @@
     </modules>
 
     <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.release>17</maven.compiler.release>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <java.version>23</java.version>
+      <keycloak.version>25.0.0</keycloak.version>
+      <freemarker.version>2.3.33</freemarker.version>
+      <maven.compiler.source>${java.version}</maven.compiler.source>
+      <maven.compiler.target>${java.version}</maven.compiler.target>
   </properties>
 
   <dependencyManagement>
