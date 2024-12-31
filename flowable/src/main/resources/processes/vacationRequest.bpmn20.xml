@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="Examples">
+
+    <process id="vacationRequest" name="Vacation Request Process">
+        <startEvent id="request" flowable:initiator="employeeName"/>
+
+        <sequenceFlow id="flow1" sourceRef="request" targetRef="handleRequest"/>
+
+        <userTask id="handleRequest" name="Handle Vacation Request"
+                  flowable:candidateGroups="managers">
+            <documentation>
+                ${employeeName} would like to take ${numberOfDays} day(s) of vacation (Motivation: ${vacationMotivation}).
+            </documentation>
+        </userTask>
+
+        <sequenceFlow id="flow2" sourceRef="handleRequest" targetRef="requestApprovedDecision"/>
+
+        <exclusiveGateway id="requestApprovedDecision" name="Request Approved?"/>
+
+        <sequenceFlow id="flow3" sourceRef="requestApprovedDecision" targetRef="sendApprovalMail">
+            <conditionExpression xsi:type="tFormalExpression">${approved}</conditionExpression>
+        </sequenceFlow>
+
+        <sequenceFlow id="flow4" sourceRef="requestApprovedDecision" targetRef="sendRejectionMail">
+            <conditionExpression xsi:type="tFormalExpression">${!approved}</conditionExpression>
+        </sequenceFlow>
+
+        <serviceTask id="sendApprovalMail" name="Send Approval Mail"
+                     flowable:class="com.example.delegate.SendMailDelegate">
+            <extensionElements>
+                <flowable:field name="mailType" stringValue="APPROVAL"/>
+            </extensionElements>
+        </serviceTask>
+
+        <serviceTask id="sendRejectionMail" name="Send Rejection Mail"
+                     flowable:class="com.example.delegate.SendMailDelegate">
+            <extensionElements>
+                <flowable:field name="mailType" stringValue="REJECTION"/>
+            </extensionElements>
+        </serviceTask>
+
+        <sequenceFlow id="flow5" sourceRef="sendApprovalMail" targetRef="theEnd"/>
+        <sequenceFlow id="flow6" sourceRef="sendRejectionMail" targetRef="theEnd"/>
+
+        <endEvent id="theEnd"/>
+    </process>
+</definitions>

@@ -14,6 +14,7 @@
       <module>Java</module>
         <module>Java/JavaMultithreading</module>
       <module>Keycloak</module>
+      <module>flowable</module>
     </modules>
 
     <properties>
@@ -21,6 +22,7 @@
       <java.version>23</java.version>
       <keycloak.version>25.0.0</keycloak.version>
       <freemarker.version>2.3.33</freemarker.version>
+      <flowable.version>7.0.0</flowable.version>
       <maven.compiler.source>${java.version}</maven.compiler.source>
       <maven.compiler.target>${java.version}</maven.compiler.target>
   </properties>
