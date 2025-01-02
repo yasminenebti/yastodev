@@ -13,8 +13,8 @@
     <modules>
       <module>Java</module>
         <module>Java/JavaMultithreading</module>
-      <module>Keycloak</module>
       <module>flowable</module>
+      <module>keycloak</module>
     </modules>
 
     <properties>
