@@ -4,7 +4,6 @@ import com.yastodev.app.keycloakauthserver.model.UserDto;
 import com.yastodev.app.keycloakauthserver.service.UserService;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.CredentialRepresentation;
