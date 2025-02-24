@@ -8,6 +8,9 @@ public class DesignPatternsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DesignPatternsApplication.class, args);
+        Internet internet = new ProxyInternet();
+        internet.connectTo("google.com");
+        internet.connectTo("banned.com");
     }
 
 }
