@@ -15,6 +15,7 @@
         <module>Java/JavaMultithreading</module>
       <module>flowable</module>
       <module>keycloak</module>
+        <module>mcp</module>
     </modules>
 
     <properties>
