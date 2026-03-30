@@ -1,4 +1,4 @@
-package com.yastodev.app.string.LongestSubstringWithoutRepeatingCharacters;
+package com.yastodev.app.string.longestSubstringWithoutRepeatingCharacters;
 
 import java.util.HashMap;
 import java.util.Map;
