@@ -1,4 +1,4 @@
-package com.yastodev.app.string.longestSubstringWithoutRepeatingCharacters;
+package com.yastodev.app.LongestSubstringWithoutRepeatingCharacters;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,11 +27,4 @@ class Solution {
         return result;
     }
 
-    public static void main(String[] args) {
-        Solution sol = new Solution();
-
-        System.out.println(sol.lengthOfLongestSubstring("abcabcbb")); // expected 3
-        System.out.println(sol.lengthOfLongestSubstring("bbbbb"));    // expected 1
-        System.out.println(sol.lengthOfLongestSubstring("pwwkew"));   // expected 3
-    }
 }
