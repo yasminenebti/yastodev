@@ -1,4 +1,4 @@
-package com.yastodev.app.string.longestPalindromicSubstring;
+package com.yastodev.app.longestPalindromicSubstring;
 
 
 class Solution {
@@ -39,16 +39,5 @@ class Solution {
 
 
 
-    public static void main(String[] args) {
-        Solution sol = new Solution();
-
-        System.out.println(sol.longestPalindromicSubstring("abaaaefdfeasa"));
-        System.out.println(sol.longestPalindromicSubstring("ababa"));
-        System.out.println(sol.longestPalindromicSubstring("abccbd"));
-        System.out.println(sol.longestPalindromicSubstring("a"));
-        System.out.println(sol.longestPalindromicSubstring("azerty"));
-
-
-    }
 
 }
