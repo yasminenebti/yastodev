@@ -16,6 +16,7 @@
       <module>flowable</module>
       <module>keycloak</module>
         <module>problem-solving</module>
+        <module>reactive</module>
     </modules>
 
     <properties>
