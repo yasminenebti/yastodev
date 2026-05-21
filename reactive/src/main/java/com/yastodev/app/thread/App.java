@@ -1,4 +1,4 @@
-package com.yastodev.app;
+package com.yastodev.app.thread;
 
 /**
  * Hello world!
