@@ -1,0 +1,73 @@
+services:
+  reverse-proxy:
+    image: traefik:v2.11
+    profiles:
+      - local
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --log.level=DEBUG
+    ports:
+      - "80:80"
+      - "8093:8080"
+    environment:
+      LOG_LEVEL: INFO
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      local:
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    profiles:
+      - local
+    volumes:
+      - keycloak:/opt/keycloak/data
+    ports:
+      - "9090:9090"
+      - "8787:8787"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_LOG_LEVEL: INFO
+      DEBUG: false
+      DEBUG_PORT: '*:8787'
+      KC_SPI_LOGIN_PROTOCOL_OPENID_CONNECT_LEGACY_LOGOUT_REDIRECT_URI: true
+    healthcheck:
+      test: [ "CMD-SHELL", "timeout 5s bash -c ':> /dev/tcp/localhost/9090'" ]
+      interval: 3s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    command: start-dev --http-port=9090
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.keycloak.rule=Host(`keycloak.open-issue-navigator`)
+      - traefik.http.routers.keycloak.entrypoints=web
+      - traefik.http.services.keycloak.loadbalancer.server.port=9090
+    networks:
+      local:
+
+  db:
+    image: postgres
+    profiles:
+      - local
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    labels:
+      - traefik.http.services.db-service.loadbalancer.server.port=5432
+    networks:
+      local:
+volumes:
+  keycloak:
+
+networks:
+  local:
+    driver: bridge
